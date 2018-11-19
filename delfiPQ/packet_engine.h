@@ -15,10 +15,10 @@
 
 #define UART_BUF_SIZE       300
 
-void import_pkt();
-
-void export_pkt();
-
 void PQ9_master();
+
+void PQ9_primary();
+
+void PQ9_beta();
 
 #endif
