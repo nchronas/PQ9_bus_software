@@ -45,6 +45,12 @@ void get_parameter(param_id pid, void* value, uint8_t *buf, uint16_t *size) {
     *((uint16_t*)value) = temp_val;
     *size = 2;
 
+  } else if(pid == MPP_lpm_sen_param_id) {
+    uint16_t data = HAL_lpm_sen();
+    *((uint16_t*)value) = data;
+    cnv16_8(data, buf);
+    *size = 2;
+
   } else if(pid == mpp_sensor_status_param_id) {
 
     bool status[16];
@@ -99,6 +105,28 @@ bool set_parameter(param_id pid, void* value) {
     };
 
     write_device_parameters(MPP_FRAM_DEV_ID, &temp_fram);
+
+  } else if(pid == MPP_dpot_param_id) {
+
+    uint16_t temp_val;
+
+    cnv8_16LE((uint8_t*)value, &temp_val);
+
+    write_device_parameters(MPP_DPOT_DEV_ID, temp_val);
+
+  } else if(pid == MPP_valves_param_id) {
+
+    uint8_t *sw;
+    sw = (uint8_t*)value;
+
+    HAL_lpm_heat(sw[0]);
+    HAL_vlm_heat(sw[1]);
+
+    HAL_lpm_spike(sw[2]);
+    HAL_vlm_spike(sw[3]);
+
+    HAL_lpm_hold(sw[4]);
+    HAL_vlm_hold(sw[5]);
 
   } else if(pid == SBSYS_sensor_loop_param_id) {
     uint8_t *buf;
