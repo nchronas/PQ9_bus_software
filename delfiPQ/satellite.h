@@ -119,7 +119,16 @@ typedef enum {
     COMMS_RF_RX_DEV_ID      = 52,
     COMMS_RF_CTRL_DEV_ID    = 53,
     INT_WDG_DEV_ID          = 54,
-    LAST_DEV_ID             = 55
+
+    MPP_BOARD_MON_DEV_ID    = 55,
+    MPP_HOLD_MON_DEV_ID     = 56,
+    MPP_SPIKE_MON_DEV_ID    = 57,
+    MPP_HEATER_MON_DEV_ID   = 58,
+    MPP_TEMP_DEV_ID         = 59,
+    MPP_FRAM_DEV_ID         = 60,
+    MPP_DPOT_DEV_ID         = 61,
+
+    LAST_DEV_ID             = 62
 }dev_id;
 
 typedef enum {
