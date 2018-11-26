@@ -56,6 +56,7 @@ typedef enum {
     COMMS_APP_ID    = _COMMS_APP_ID_,
     OBC_APP_ID      = _OBC_APP_ID_,
     ADCS_APP_ID     = _ADCS_APP_ID_,
+    MPP_APP_ID      = _MPP_APP_ID_,
     ADB_APP_ID      = _ADB_APP_ID_,
     GND_APP_ID      = _GND_APP_ID_,
     DBG_APP_ID      = _DBG_APP_ID_,

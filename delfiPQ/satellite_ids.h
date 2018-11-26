@@ -15,9 +15,10 @@
 #define _ADB_APP_ID_   3
 #define _COMMS_APP_ID_ 4
 #define _ADCS_APP_ID_  5
-#define _GND_APP_ID_   6
-#define _DBG_APP_ID_   7
-#define _EGSE_APP_ID_  8
-#define _LAST_APP_ID_  9
+#define _MPP_APP_ID_   6
+#define _GND_APP_ID_   7
+#define _DBG_APP_ID_   8
+#define _EGSE_APP_ID_  9
+#define _LAST_APP_ID_  10
 
 #endif /* SERVICES_SUBSYSTEMS_IDS_H_ */
