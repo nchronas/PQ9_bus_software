@@ -36,6 +36,10 @@ cmd = "git clone https://github.com/nchronas/COMMS_software.git"
 pipe = subprocess.Popen(cmd, shell=True)
 pipe.wait()
 
+cmd = "git clone https://github.com/nchronas/MPP_software.git"
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
 
 cmd = "git clone https://github.com/nchronas/PQ9_bus_software.git"
 pipe = subprocess.Popen(cmd, shell=True)
@@ -54,6 +58,10 @@ pipe = subprocess.Popen(cmd, shell=True)
 pipe.wait()
 
 cmd = "git clone https://github.com/nchronas/LTC2942.git"
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+cmd = "git clone https://github.com/nchronas/AD5235.git"
 pipe = subprocess.Popen(cmd, shell=True)
 pipe.wait()
 
@@ -856,6 +864,175 @@ print pq9_path + "core"
 print path + "INA226"
 print path + "TMP100"
 print path + "MB85RS256A"
+
+
+print "Making MPP project"
+
+working_dir = path + "MPP_software"
+
+pq9_path = path + "PQ9_bus_software/"
+
+print "Creating folders"
+
+call(["mkdir", "libs"], cwd=working_dir)
+call(["mkdir", "ttc"], cwd=working_dir)
+
+print "Creating symlinks"
+
+folder = "MPP_software/"
+
+f = pq9_path + "delfiPQ/MPP/HAL/MPP_Board.h"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "delfiPQ/MPP/HAL/MPP_Board.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+folder = "MPP_software/ttc/"
+
+f = pq9_path + "delfiPQ/HAL/hal_functions.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "delfiPQ/MPP/HAL/hal_subsystem.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+f = pq9_path + "delfiPQ/MPP/devices.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "delfiPQ/MPP/fm.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "delfiPQ/MPP/housekeeping.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "delfiPQ/MPP/parameters.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "delfiPQ/MPP/subsystem_pool.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "delfiPQ/MPP/subsystem.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+
+f = pq9_path + "delfiPQ/OSAL/osal.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "delfiPQ/packet_engine.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "delfiPQ/PQ9_bus_engine.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "delfiPQ/satellite.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+
+f = pq9_path + "core/function_management_service.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "core/housekeeping_service.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "core/packet_stats.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "core/packet_utilities.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "core/ping_service.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "core/pkt_pool.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "core/verification_service.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "core/queue.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = pq9_path + "core/testing.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+
+folder = "MPP_software/libs/"
+f = path + "TMP100/TMP100.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = path + "INA226/INA226.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = path + "MB85RS256A/MB85RS256A.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+f = path + "AD5235/AD5235.c"
+cmd = "ln -s " + f + " " + folder
+pipe = subprocess.Popen(cmd, shell=True)
+pipe.wait()
+
+print "Input to ccs directories"
+print pq9_path + "delfiPQ/MPP"
+print pq9_path + "delfiPQ/MPP/HAL"
+print pq9_path + "delfiPQ/HAL"
+print pq9_path + "delfiPQ/OSAL"
+print pq9_path + "delfiPQ"
+print pq9_path + "core"
+print path + "INA226"
+print path + "TMP100"
+print path + "MB85RS256A"
+print path + "AD5235"
+
 
 
 
