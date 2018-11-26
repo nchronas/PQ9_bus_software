@@ -175,3 +175,40 @@ void HAL_peripheral_open() {
   }
 
 }
+
+bool HAL_lpm_sen(int16_t *val) {
+  int_fast16_t res;
+  uint16_t conv;
+
+  res = ADC_convert(adc_lpm_sen, &conv);
+  *val = conv;
+
+  if (res == ADC_STATUS_SUCCESS) {
+    return true;
+  }
+  return false;
+}
+
+void HAL_lpm_heat(uint8_t val) {
+  GPIO_write( LPM_HEAT, val);
+}
+
+void HAL_vlm_heat(uint8_t val) {
+  GPIO_write( VLM_HEAT, val);
+}
+
+void HAL_lpm_spike(uint8_t val) {
+  GPIO_write( LPM_VALVE_SPIKE, val);
+}
+
+void HAL_vlm_spike(uint8_t val) {
+  GPIO_write( VLM_VALVE_SPIKE, val);
+}
+
+void HAL_lpm_hold(uint8_t val) {
+  GPIO_write( LPM_VALVE_HOLD, val);
+}
+
+void HAL_vlm_hold(uint8_t val) {
+  GPIO_write( VLM_VALVE_HOLD, val);
+}
