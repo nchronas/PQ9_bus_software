@@ -26,6 +26,41 @@ Timer_Handle tim_pq9_bus_tx_en;
 ADC_Handle adc_lpm_sen;
 Watchdog_Handle intWatchdogHandle;
 
+void HAL_access_device_peripheral(dev_id id, void ** handle) {
+
+ if(id == MPP_BOARD_MON_DEV_ID ||
+    id == MPP_HOLD_MON_DEV_ID ||
+    id == MPP_SPIKE_MON_DEV_ID ||
+    id == MPP_HEATER_MON_DEV_ID ||
+    id == MPP_TEMP_DEV_ID) {
+    *handle = &i2c_brd;
+  // } else if(id == MPP_FRAM_DEV_ID) {
+  //   *handle = &spi_fram;
+  } else if(id == MPP_DPOT_DEV_ID) {
+    *handle = &spi_dpot;
+  }
+
+}
+
+HAL_access_device_peripheral_meta(dev_id id, void *value) {
+
+  if(id == MPP_BOARD_MON_DEV_ID) {
+    *(uint8_t*)value = 0x40;
+  } else if(id == MPP_HOLD_MON_DEV_ID) {
+    *(uint8_t*)value = 0x41;
+  } else if(id == MPP_SPIKE_MON_DEV_ID) {
+    *(uint8_t*)value = 0x42;
+  } else if(id == MPP_HEATER_MON_DEV_ID) {
+    *(uint8_t*)value = 0x43;
+  } else if(id == MPP_TEMP_DEV_ID) {
+    *(uint8_t*)value = 0x48;
+  } else if(id == MPP_FRAM_DEV_ID) {
+    *(Board_GPIOName*)value = FRAM_CS;
+  } else if(id == MPP_DPOT_DEV_ID) {
+    *(Board_GPIOName*)value = DPOT_CS;
+  }
+
+}
 
 void temp(UART_Handle handle, void *buf, size_t count) {
 
