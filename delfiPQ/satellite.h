@@ -219,19 +219,16 @@ typedef enum {
 
     SBSYS_sensor_loop_param_id         =  61,
     Master_command_loop_param_id       =  62,
+    COMMS_EPS_RST_param_id             =  63,
 
-    LAST_param_id                      =  63
+    MPP_boot_counter_param_id          =  64,
+    MPP_dpot_param_id                  =  65,
+    MPP_lpm_sen_param_id               =  66,
+    MPP_valves_param_id                =  67,
+    mpp_sensor_status_param_id         =  68,
+
+    LAST_param_id                      =  69
 }param_id;
-
-typedef enum {
-    TEST_VAULT_ID           =  0,
-    LAST_VAULT_ID           =  1
-}vault_id;
-
-typedef enum {
-    TEST_MON_ID             =  0,
-    LAST_MON_ID             =  1
-}mon_id;
 
 typedef enum {
     P_OFF       = 0,
