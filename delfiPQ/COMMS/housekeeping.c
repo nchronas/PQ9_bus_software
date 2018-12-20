@@ -23,6 +23,14 @@ void populate_housekeeping(uint8_t *buf, uint8_t *pkt_size) {
           size += param_size;
         }
 
+        //boot counter + software boot counter
+        buf[size] = 0;
+        size ++;
+        buf[size] = 0;
+        size ++;
+        buf[size] = 0;
+        size ++;
+
         {
           uint32_t var;
           get_parameter(comms_sensor_status_param_id, &var, &buf[size], &param_size);
