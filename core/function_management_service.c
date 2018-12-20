@@ -15,7 +15,7 @@ void crt_fm_get_parameter_command(pq9_pkt *pkt, SBSYS_id dest_id) {
     return ;
   }
 
-  crt_pkt(resp_pkt, dest_id, TC_FM_TYPE, TC_FM_SET_PARAMETER_SUBTYPE, 0);
+  crt_pkt(resp_pkt, dest_id, TC_FM_TYPE, TC_FM_SET_PARAMETER_SUBTYPE, 0, NULL);
   queuePush(resp_pkt, RS_POOL_ID);
 }
 
@@ -27,7 +27,7 @@ void crt_fm_set_parameter_request(pq9_pkt *pkt, SBSYS_id dest_id) {
     return ;
   }
 
-  crt_pkt(resp_pkt, dest_id, TC_FM_TYPE, TC_HK_REQ_SUBTYPE, 0);
+  crt_pkt(resp_pkt, dest_id, TC_FM_TYPE, TC_HK_REQ_SUBTYPE, 0, NULL);
   queuePush(resp_pkt, RS_POOL_ID);
 }
 
@@ -55,7 +55,7 @@ void function_management_app(pq9_pkt *pkt) {
     uint32_t val;
     get_parameter(pkt->msg[0], &val, resp_pkt->msg, &size);
 
-    crt_pkt(resp_pkt, pkt->src_id, TC_FM_TYPE, TM_FM_PARAMETER_RESP_SUBTYPE, size);
+    crt_pkt(resp_pkt, pkt->src_id, TC_FM_TYPE, TM_FM_PARAMETER_RESP_SUBTYPE, size, NULL);
     queuePush(resp_pkt, RS_POOL_ID);
 
   //} else if(pkt->subtype == TC_FM_SET_DEVICE_SUBTYPE) {

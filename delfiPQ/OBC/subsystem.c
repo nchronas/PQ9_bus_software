@@ -15,10 +15,10 @@ void route_pkt(pq9_pkt *pkt) {
     housekeeping_app(pkt);
   } else if(pkt->type == TC_FM_TYPE) {
     function_management_app(pkt);
-  } else if(pkt->type == TC_EN_TYPE) {
-    if(pkt->subtype == TM_EN_RESP_SUBTYPE) {
-        route_en_resp(pkt);
-    }
+//  } else if(pkt->type == TC_EN_TYPE) {
+//    if(pkt->subtype == TM_EN_RESP_SUBTYPE) {
+//        route_en_resp(pkt);
+//    }
   } else if(pkt->type == TC_STATS_TYPE) {
     pstats_app(pkt);
   } else if(pkt->type == TC_TESTING_TYPE) {

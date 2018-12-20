@@ -18,7 +18,7 @@ void import_rf_packet(uint8_t *buf, uint16_t size) {
       route_pkt(pkt);
       free_pkt(pkt);
     } else {
-      queuePush(pkt, RF_POOL_ID);
+      queuePush(pkt, RS_POOL_ID);
     }
   } else {
     free_pkt(pkt);
@@ -33,10 +33,24 @@ bool transfer_rf_packet(uint8_t *buf, uint16_t *size) {
   if((pkt = queuePop(RF_POOL_ID)) ==  NULL) {
     return false;
   }
+  pkt->size += 2; //type and subtype
+  pkt->size += 2; //packet counter
 
-  bool res = pack_PQ9_BUS(pkt, buf, &size);
+  bool res = pack_PQ9_BUS(pkt, buf, size);
 
   free_pkt(pkt);
+
+//  buf[0] = 0x02;
+//  buf[1] = 0x04;
+//  buf[2] = 0x01;
+//  buf[3] = 0x00;
+//  buf[4] = 0x00;
+//  buf[5] = 0x11;
+//  buf[6] = 0x01;
+//  buf[7] = 0x1D;
+//  buf[8] = 0xBE;
+//
+//  *size = 9;
 
   return true;
 }

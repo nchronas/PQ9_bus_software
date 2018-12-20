@@ -52,6 +52,9 @@ void populate_housekeeping(uint8_t *buf, uint8_t *pkt_size) {
         cnv16_8(ina_dev.voltage_raw, &buf[size]);
         size += 2;
 
+        get_parameter(MPP_lpm_sen_param_id, &var, &buf[size], &param_size);
+        size += param_size;
+
         get_parameter(testing_2_param_id, &var, &buf[size], &param_size);
         size += param_size;
 
@@ -93,7 +96,7 @@ void retrieve_housekeeping(SBSYS_id id, uint8_t *buf, uint16_t *size) {
     memcpy(buf, comms_hk_buffer, comms_hk_size);
     *size = comms_hk_size;
   } else if(id == OBC_APP_ID) {
-    buf[0] = SYSTEM_APP_ID;
+    buf[0] = OBC_APP_ID;
     populate_housekeeping(&buf[1], size);
   }
 }

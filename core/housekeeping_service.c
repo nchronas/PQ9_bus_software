@@ -2,7 +2,7 @@
 #include "satellite.h"
 #include "subsystem.h"
 
-void crt_hk_request(SBSYS_id dest_id) {
+void crt_hk_request(SBSYS_id dest_id, uint8_t *flag) {
   pq9_pkt *resp_pkt;
 
   resp_pkt = get_pkt(0);
@@ -10,7 +10,7 @@ void crt_hk_request(SBSYS_id dest_id) {
     return ;
   }
 
-  crt_pkt(resp_pkt, dest_id, TC_HK_TYPE, TC_HK_REQ_SUBTYPE, 0);
+  crt_pkt(resp_pkt, dest_id, TC_HK_TYPE, TC_HK_REQ_SUBTYPE, 0, flag);
   queuePush(resp_pkt, RS_POOL_ID);
 }
 
@@ -22,12 +22,17 @@ void crt_housekeeping_resp(SBSYS_id dest_id) {
     return ;
   }
 
-  uint8_t size = 1;
-  resp_pkt->msg[0] = SYSTEM_APP_ID;
+//  uint8_t size = 1;
+//  resp_pkt->msg[0] = SYSTEM_APP_ID;
+//
+//  populate_housekeeping(&resp_pkt->msg[1], &size);
 
-  populate_housekeeping(&resp_pkt->msg[1], &size);
+   uint8_t size = 0;
 
-  crt_pkt(resp_pkt, dest_id, TC_HK_TYPE, TM_HK_RESP_SUBTYPE, size);
+   populate_housekeeping(&resp_pkt->msg[0], &size);
+
+
+  crt_pkt(resp_pkt, dest_id, TC_HK_TYPE, TM_HK_RESP_SUBTYPE, size, NULL);
   queuePush(resp_pkt, RS_POOL_ID);
 }
 
@@ -54,7 +59,7 @@ void crt_housekeeping_transmit(SBSYS_id id) {
     size = 6;
   }
 
-  crt_pkt(resp_pkt, COMMS_APP_ID, TC_HK_TYPE, TM_HK_RF_SUBTYPE, size);
+  crt_pkt(resp_pkt, COMMS_APP_ID, TC_HK_TYPE, TM_HK_RF_SUBTYPE, size, NULL);
   queuePush(resp_pkt, RS_POOL_ID);
 }
 

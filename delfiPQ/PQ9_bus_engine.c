@@ -88,7 +88,7 @@ bool unpack_PQ9_BUS(const uint8_t *buf,
   }
 
   if(pq_pkt->dest_id != SYSTEM_APP_ID) {
-    return false;
+   // return false;
   }
 
   uint16_t crc_calc = calculate_crc_PQ9(buf, size - 2);
@@ -123,18 +123,18 @@ bool pack_PQ9_BUS(pq9_pkt *pq_pkt, uint8_t *buf, uint16_t *size) {
 
 #if(SYSTEM_APP_ID == PQ9_MASTER_APP_ID)
   if(pq_pkt->dest_id == PQ9_MASTER_APP_ID) {
-    return false;
+    //return false;
   }
 #else
   if(pq_pkt->dest_id != PQ9_MASTER_APP_ID) {
-    return false;
+    //return false;
   }
 #endif
 
   pq_pkt->src_id = SYSTEM_APP_ID;
 
   if(!C_ASSERT(pq_pkt->src_id != pq_pkt->dest_id) == true) {
-    return false;
+    //return false;
   }
 
   *size = pq_pkt->size + 3; //header
@@ -158,12 +158,13 @@ bool pack_PQ9_BUS(pq9_pkt *pq_pkt, uint8_t *buf, uint16_t *size) {
   return true;
 }
 
-crt_pkt(pq9_pkt *pq_pkt, SBSYS_id id, uint8_t type, uint8_t subtype, uint8_t size) {
+crt_pkt(pq9_pkt *pq_pkt, SBSYS_id id, uint8_t type, uint8_t subtype, uint8_t size, uint8_t *flag) {
 
   pq_pkt->dest_id = id;
   pq_pkt->size = size + 2 + 2; //type and subtype + packet counter
   pq_pkt->src_id = SYSTEM_APP_ID;
   pq_pkt->type = type;
   pq_pkt->subtype = subtype;
+  pq_pkt->notification_flag = flag;
 
 }

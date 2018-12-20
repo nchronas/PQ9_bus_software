@@ -108,6 +108,10 @@ bool set_parameter(param_id pid, void* value) {
     dev.cmd = true;
     write_device_parameters(INT_WDG_DEV_ID, &dev);
 
+  } else if(pid == COMMS_EPS_RST_param_id) {
+
+    HAL_PQ9_RST();
+
   } else {
     res = false;
   }

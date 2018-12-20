@@ -22,7 +22,7 @@ pq9_pkt * get_pkt(const uint16_t size) {
             if(pkt_pool.free[i] == true) {
                 pkt_pool.free[i] = false;
                 pkt_pool.time[i] = OSAL_sys_GetTick();
-                pkt_pool.pkt[i].verification_state = SATR_PKT_INIT;
+                pkt_pool.pkt[i].notification_flag = NULL;
                 return &pkt_pool.pkt[i];
             }
         }
@@ -62,6 +62,7 @@ void pkt_pool_INIT() {
 
     for(uint8_t i = 0; i < POOL_PKT_SIZE; i++) {
        pkt_pool.free[i] = true;
+       pkt_pool.pkt[i].notification_flag = NULL;
     }
 }
 

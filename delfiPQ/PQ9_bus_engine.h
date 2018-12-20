@@ -16,7 +16,8 @@ typedef struct {
   uint8_t subtype;
   uint16_t packet_counter;
   uint8_t msg[253];
-  SAT_returnState verification_state;
+
+  uint8_t *notification_flag;
 }pq9_pkt;
 
 bool is_enabled_PQ9_tx();

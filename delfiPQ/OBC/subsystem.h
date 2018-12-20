@@ -7,7 +7,7 @@
 #include "PQ9_bus_engine.h"
 #include "OBC_Board.h"
 
-#define SYSTEM_APP_ID _DBG_APP_ID_ //_OBC_APP_ID_
+#define SYSTEM_APP_ID  _OBC_APP_ID_    // _DBG_APP_ID_ //  _OBC_APP_ID_
 
 void route_pkt(pq9_pkt *pkt);
 

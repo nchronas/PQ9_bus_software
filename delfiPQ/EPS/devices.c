@@ -9,6 +9,9 @@
 #include "LTC2942.h"
 #include "MB85RS256A.h"
 
+
+#include <ti/drivers/UART.h>
+
 #define MAX_TMP_DEVS 4
 #define MAX_INA_DEVS 10
 
@@ -95,6 +98,9 @@ void device_init() {
 
 }
 
+extern UART_Handle uart_dbg_bus;
+char msg_dev[200];
+
 void update_device(dev_id id) {
 
   OSAL_device_pend();
@@ -122,6 +128,12 @@ void update_device(dev_id id) {
     OSAL_sys_delay(1);
 
     INA226_readBusPower_raw(id, &ina_dev[pos_index].power_raw);
+
+    //uint8_t add;
+    //HAL_access_device_peripheral_meta(id, &add);
+
+    //sprintf(msg_dev, "INA: %d, %d, E: %d.%d, C %d, V %d\n", id, add, (int)r1, (int)r2, (int)(ina_dev[pos_index].current_raw), (int)ina_dev[pos_index].voltage_raw);
+    //UART_write(uart_dbg_bus, msg_dev, strlen(msg_dev));
 
     //INA226_rawBusPower(ina_dev[pos_index].power_raw , ina_dev[pos_index].powerLSB);
     //INA226_rawShuntCurrent( ina_dev[pos_index].current_raw, ina_dev[pos_index].currentLSB);

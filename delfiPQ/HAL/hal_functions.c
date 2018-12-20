@@ -44,13 +44,19 @@ bool HAL_SPI_readWrite( dev_id id,
     return false;
   }
 
+  char tx[3] = { 0xB0, 0x00, 0x50};
+
   spiTransaction.count = count;
-  spiTransaction.txBuf = (void *)writeBuf;
+  spiTransaction.txBuf = tx; //(void *)writeBuf;
   spiTransaction.rxBuf = (void *)readBuf;
 
-  GPIO_write(FRAM_CS, 0);
+//  GPIO_write(FRAM_CS, 0);
+//  res = SPI_transfer(*spi, &spiTransaction);
+//  GPIO_write(FRAM_CS, 1);
+
+  GPIO_write(DPOT_CS, 0);
   res = SPI_transfer(*spi, &spiTransaction);
-  GPIO_write(FRAM_CS, 1);
+  GPIO_write(DPOT_CS, 1);
 
   if(!C_ASSERT(res == true) == true) {
     return false;

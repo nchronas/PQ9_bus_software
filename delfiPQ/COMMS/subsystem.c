@@ -12,8 +12,8 @@ void route_pkt(pq9_pkt *pkt) {
     ping_app(pkt);
   } else if(pkt->type == TC_HK_TYPE) {
     housekeeping_app(pkt);
-  } else if(pkt->type == TC_EN_TYPE) {
-    en_data_app(pkt);
+//  } else if(pkt->type == TC_EN_TYPE) {
+//    en_data_app(pkt);
   } else if(pkt->type == TC_FM_TYPE) {
     function_management_app(pkt);
   } else if(pkt->type == TC_STATS_TYPE) {

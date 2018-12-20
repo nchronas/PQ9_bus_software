@@ -9,7 +9,7 @@ void crt_ping_resp(SBSYS_id dest_id) {
     return ;
   }
 
-  crt_pkt(resp_pkt, dest_id, TC_PING_TYPE, TM_PING_RESP_SUBTYPE, 0);
+  crt_pkt(resp_pkt, dest_id, TC_PING_TYPE, TM_PING_RESP_SUBTYPE, 0, NULL);
   queuePush(resp_pkt, RS_POOL_ID);
 }
 

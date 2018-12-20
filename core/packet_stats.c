@@ -68,7 +68,7 @@ void crt_pstats_request(SBSYS_id dest_id) {
 
   uint16_t size = 0;
 
-  crt_pkt(resp_pkt, dest_id, TC_STATS_TYPE, TC_STATS_REQ_SUBTYPE, size);
+  crt_pkt(resp_pkt, dest_id, TC_STATS_TYPE, TC_STATS_REQ_SUBTYPE, size, NULL);
   queuePush(resp_pkt, RS_POOL_ID);
 }
 
@@ -84,7 +84,7 @@ void crt_pstats_resp(SBSYS_id dest_id) {
 
   copy_stats(resp_pkt->msg, &size);
 
-  crt_pkt(resp_pkt, dest_id, TC_STATS_TYPE, TM_STATS_RESP_SUBTYPE, size);
+  crt_pkt(resp_pkt, dest_id, TC_STATS_TYPE, TM_STATS_RESP_SUBTYPE, size, NULL);
   queuePush(resp_pkt, RS_POOL_ID);
 }
 

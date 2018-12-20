@@ -22,8 +22,17 @@ void route_en_resp(pq9_pkt *pkt) {
   bool res_unpack_PQ = unpack_PQ9_BUS(pkt->msg,
                                       pkt->size,
                                       rt_pkt);
-  if(res_unpack_PQ == true) {
+
+  if(rt_pkt->dest_id != SYSTEM_APP_ID && res_unpack_PQ == true) {
+      rt_pkt->size += 2; //type and subtype
+      rt_pkt->size += 2; //packet counter
+      enable_PQ9_tx();
+      queuePush(rt_pkt, RS_POOL_ID);
+  } else if(res_unpack_PQ == true) {
       route_pkt(rt_pkt);
+      free_pkt(rt_pkt);
+  } else {
+      free_pkt(rt_pkt);
   }
 
   free_pkt(pkt);
