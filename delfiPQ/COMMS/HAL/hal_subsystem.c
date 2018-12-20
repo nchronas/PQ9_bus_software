@@ -12,6 +12,7 @@
 #include <ti/drivers/I2C.h>
 #include <ti/drivers/Timer.h>
 #include <ti/drivers/GPIO.h>
+#include <ti/drivers/gpio/GPIOMSP432.h>
 #include <ti/drivers/ADC.h>
 #include <ti/drivers/adc/ADCMSP432.h>
 #include <ti/drivers/Watchdog.h>
@@ -170,4 +171,18 @@ bool HAL_adc_reading(uint8_t id, uint16_t *val) {
     return true;
   }
   return false;
+}
+
+extern GPIO_PinConfig gpioPinConfigs[];
+
+void HAL_PQ9_RST() {
+
+ // GPIO_PinConfig gpioPinConfigs[] = { GPIOMSP432_P2_0 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_LOW | GPIO_CFG_OUT_HIGH };
+
+  GPIO_PinConfig gpioPinConfigs[PQ9_RST] = { GPIOMSP432_P2_0 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_LOW | GPIO_CFG_OUT_HIGH };
+
+
+  GPIO_setConfig(PQ9_RST, gpioPinConfigs);
+  usleep(10);
+  GPIO_write(PQ9_RST, 0);
 }

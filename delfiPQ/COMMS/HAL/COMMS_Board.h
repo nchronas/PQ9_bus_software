@@ -94,6 +94,7 @@ typedef enum Board_GPIOName {
     PQ9_EN = 0,
     RF_RX_CS = 1,
     RF_TX_CS = 2,
+    PQ9_RST = 3,
     Board_GPIOCOUNT
 } Board_GPIOName;
 
