@@ -21,7 +21,7 @@
 #define TC_FM_TYPE    1
 #define TC_HK_TYPE    3
 #define TC_VER_TYPE   4
-#define TC_EN_TYPE    5
+#define TC_RF_TYPE    5
 #define TC_STATS_TYPE 6
 #define TC_PING_TYPE 17
 #define TC_TESTING_TYPE 21
@@ -37,9 +37,10 @@
 #define TM_ACK_OK_SUBTYPE    2
 #define TM_ACK_ERROR_SUBTYPE 4
 
-#define TC_EN_REQ_SUBTYPE    1
-#define TM_EN_RESP_SUBTYPE   2
-#define TM_EN_EMPTY_SUBTYPE  5
+#define TC_RF_TX_SUBTYPE     1
+#define TM_RF_RX_SUBTYPE     9
+#define TM_RF_GET_RX_SUBTYPE 10
+#define TM_RF_NO_RX_SUBTYPE  11
 
 #define TC_TST_FREEZE    6
 #define TC_TST_STARTM    7
