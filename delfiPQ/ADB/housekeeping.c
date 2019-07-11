@@ -17,6 +17,13 @@ void populate_housekeeping(uint8_t *buf, uint8_t *pkt_size) {
         get_parameter(testing_4_param_id, &var, &buf[size], &param_size);
         size += param_size;
 
+        buf[size] = 0;
+        size += 1;
+        buf[size] = 0;
+        size += 1;
+        buf[size] = 0;
+        size += 1;
+
         get_parameter(adb_sensor_status_param_id, &var, &buf[size], &param_size);
         size += param_size;
 
