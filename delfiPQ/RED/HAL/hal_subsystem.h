@@ -14,4 +14,7 @@ void HAL_LED_ON();
 
 void HAL_LED_OFF();
 
+uint8_t HAL_S1();
+uint8_t HAL_S2();
+
 #endif

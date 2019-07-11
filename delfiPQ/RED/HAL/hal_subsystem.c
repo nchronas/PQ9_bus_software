@@ -70,33 +70,44 @@ void HAL_peripheral_open() {
   Watchdog_Params wdgparams;
 
   /* Create a UART with data processing off. */
-  UART_Params_init(&uartParams);
+//  UART_Params_init(&uartParams);
+//  uartParams.writeMode = UART_MODE_BLOCKING;
+//  uartParams.writeDataMode = UART_DATA_BINARY;
+//  uartParams.readMode = UART_MODE_CALLBACK;
+//  uartParams.readDataMode = UART_DATA_BINARY;
+//  uartParams.readReturnMode = UART_RETURN_FULL;
+//  uartParams.readEcho = UART_ECHO_OFF;
+//  uartParams.baudRate = 115200;
+//  uartParams.readCallback = &temp;
+//
+// // uart_pq9_bus = UART_open(DBG, &uartParams);
+//
+//  if(!C_ASSERT(uart_pq9_bus != NULL) == true) {
+//    usleep(1);
+//  }
+//
+//  //UARTMSP432_HWAttrsV1 const *hwAttrs = uart_pq9_bus->hwAttrs;
+//  //UART_setDormant(hwAttrs->baseAddr);
+//
+//   UART_Params_init(&uartParams);
+//   uartParams.writeMode = UART_MODE_BLOCKING;
+//   uartParams.writeDataMode = UART_DATA_BINARY;
+//   uartParams.readMode = UART_MODE_BLOCKING;
+//   uartParams.readDataMode = UART_DATA_BINARY;
+//   uartParams.readReturnMode = UART_RETURN_FULL;
+//   uartParams.readEcho = UART_ECHO_OFF;
+//   uartParams.baudRate = 115200;
+
   uartParams.writeMode = UART_MODE_BLOCKING;
   uartParams.writeDataMode = UART_DATA_BINARY;
-  uartParams.readMode = UART_MODE_CALLBACK;
-  uartParams.readDataMode = UART_DATA_BINARY;
-  uartParams.readReturnMode = UART_RETURN_FULL;
-  uartParams.readEcho = UART_ECHO_OFF;
-  uartParams.baudRate = 500000;
-  uartParams.readCallback = &temp;
-  uart_pq9_bus = UART_open(PQ9, &uartParams);
 
-  if(!C_ASSERT(uart_pq9_bus != NULL) == true) {
-    usleep(1);
-  }
-
-  UARTMSP432_HWAttrsV1 const *hwAttrs = uart_pq9_bus->hwAttrs;
-  UART_setDormant(hwAttrs->baseAddr);
-
-  UART_Params_init(&uartParams);
-  uartParams.writeMode = UART_MODE_BLOCKING;
-  uartParams.writeDataMode = UART_DATA_BINARY;
   uartParams.readMode = UART_MODE_BLOCKING;
   uartParams.readDataMode = UART_DATA_BINARY;
+  uartParams.readTimeout = 1;
   uartParams.readReturnMode = UART_RETURN_FULL;
-  uartParams.readEcho = UART_ECHO_ON;
-  uartParams.baudRate = 9600;
-  uart_dbg_bus = UART_open(DBG, &uartParams);
+  uartParams.readEcho = UART_ECHO_OFF;
+  uartParams.baudRate = 115200;
+   uart_dbg_bus = UART_open(DBG, &uartParams);
 
   Timer_Params_init(&params);
   params.periodUnits = Timer_PERIOD_US;
@@ -134,8 +145,19 @@ void HAL_peripheral_open() {
 
 void HAL_LED_ON() {
   GPIO_write(Board_GPIO_LED0, Board_GPIO_LED_ON);
+  GPIO_write(Board_GPIO_LED1, Board_GPIO_LED_ON);
+
 }
 
 void HAL_LED_OFF() {
   GPIO_write(Board_GPIO_LED0, Board_GPIO_LED_OFF);
+  GPIO_write(Board_GPIO_LED1, Board_GPIO_LED_OFF);
+}
+
+uint8_t HAL_S1() {
+  return GPIO_read(MSP_EXP432P401R_GPIO_S1);
+}
+
+uint8_t HAL_S2() {
+  return GPIO_read(MSP_EXP432P401R_GPIO_S2);
 }
