@@ -139,6 +139,26 @@ bool set_parameter(param_id pid, void* value) {
     dev.cmd = true;
     write_device_parameters(INT_WDG_DEV_ID, &dev);
 
+  } else if(pid == ft_param_id) {
+
+        uint8_t *mem;
+        uint32_t temp;
+
+        uint8_t *buf;
+        buf = (uint8_t*)value;
+        cnv8_32LE(&buf[0], &temp);
+        mem = temp;
+
+        uint8_t operation = buf[4];
+        uint8_t value = buf[5];
+
+        if(operation == 0) {
+           *mem = *mem & value;
+        } else if(operation == 1) {
+           *mem = *mem | value;
+        } else if(operation == 2) {
+           *mem = *mem ^ value;
+        }
 
   } else {
     res = false;
